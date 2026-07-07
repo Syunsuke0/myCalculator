@@ -4,7 +4,7 @@ import { useState } from "react";
 const Home = () => {
   const [left, setLeft] = useState(0);
   const [ope, setOpe] = useState(null);
-  const [right, setRight] = useState(0);
+  const [right, setRight] = useState(null);
   const [result, setResult] = useState(null);
   const OPERATORS = ["+", "-", "×", "÷"];
   const BUTTONS = [
@@ -21,35 +21,40 @@ const Home = () => {
     "3",
     "-",
     "0",
-    "C",
+    "AC",
     "=",
     "+",
   ];
+
+  const clear = () => {
+    setLeft(0);
+    setRight(null);
+    setOpe(null);
+    setResult(null);
+  };
 
   const calculate = () => {
     switch (ope) {
       case "+":
         setResult(left + right);
-        console.log("加");
         return;
       case "-":
         setResult(left - right);
-        console.log("減");
         return;
       case "×":
         setResult(left * right);
-        console.log("乗");
         return;
       case "÷":
         setResult(left / right);
-        console.log("除");
         return;
       default:
         break;
     }
   };
   const keyPressed = (key) => {
-    if (key === "=") {
+    if (key === "AC") {
+      clear();
+    } else if (key === "=") {
       calculate();
       return result;
     } else if (OPERATORS.includes(key)) {
