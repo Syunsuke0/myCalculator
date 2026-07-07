@@ -1,7 +1,7 @@
 "use client";
 import { useState } from "react";
 
-export default function Home() {
+const Home = () => {
   const [left, setLeft] = useState(0);
   const [ope, setOpe] = useState(null);
   const [right, setRight] = useState(0);
@@ -25,14 +25,14 @@ export default function Home() {
     "=",
     "+",
   ];
+
   const keyPressed = (key) => {
     if (OPERATORS.includes(key)) {
       setOpe(key);
-      return;
-    }
-
-    if (ope === null) {
+    } else if (ope === null) {
       setLeft((prev) => prev * 10 + Number(key));
+    } else if (ope) {
+      setRight((prev) => prev * 10 + Number(key));
     } else {
       setRight((prev) => prev + key);
     }
@@ -47,7 +47,15 @@ export default function Home() {
     <div className="bg-white">
       <div className="text-black">
         計算結果：
+        {result !== null ? (
+          result
+        ) : (
+          <>
         {left}
+            {ope === null ? "" : ope}
+            {ope === null ? "" : right}
+          </>
+        )}
       </div>
       <div className=" grid  grid-cols-4">
         {BUTTONS.map((item) => (
@@ -64,4 +72,6 @@ export default function Home() {
       </div>
     </div>
   );
-}
+};
+
+export default Home;
