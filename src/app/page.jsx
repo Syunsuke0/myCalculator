@@ -34,12 +34,18 @@ const Home = () => {
     } else if (ope) {
       setRight((prev) => prev * 10 + Number(key));
     } else {
-      setRight((prev) => prev + key);
-    }
-
-    if (key === "=") {
-      const result = left + right;
-      return result;
+      //  修正予定箇所 {
+      //   switch (key === "=") {
+      //     case ope === "+":
+      //       setResult(left + right);
+      //       return;
+      //     case ope === "-":
+      //       setResult(left - right);
+      //       return;
+      //     default:
+      //       break;
+      //   }
+      // }
     }
   };
 
@@ -51,7 +57,7 @@ const Home = () => {
           result
         ) : (
           <>
-        {left}
+            {left}
             {ope === null ? "" : ope}
             {ope === null ? "" : right}
           </>
