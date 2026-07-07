@@ -39,27 +39,22 @@ const Home = () => {
   const calculate = () => {
     switch (ope) {
       case "+":
-        setResult(left + right);
-        return;
+        return left + right;
       case "-":
-        setResult(left - right);
-        return;
+        return left - right;
       case "×":
-        setResult(left * right);
-        return;
+        return left * right;
       case "÷":
-        setResult(left / right);
-        return;
+        return left / right;
       default:
-        break;
+        return null;
     }
   };
   const keyPressed = (key) => {
     if (key === "AC") {
       clear();
     } else if (key === "=") {
-      calculate();
-      return result;
+      setResult(calculate());
     } else if (OPERATORS.includes(key)) {
       setOpe(key);
     } else if (ope === null) {
@@ -68,21 +63,20 @@ const Home = () => {
       setRight((prev) => prev * 10 + Number(key));
     }
   };
+  const renderDisplay = () =>
+    result !== null ? (
+      formatNumber(result)
+    ) : (
+      <>
+        {formatNumber(left)}
+        {ope === null ? "" : ope}
+        {ope !== null && right !== 0 && formatNumber(right)}
+      </>
+    );
 
   return (
     <div className="bg-white">
-      <div className="text-black">
-        計算結果：
-        {result !== null ? (
-          formatNumber(result)
-        ) : (
-          <>
-            {formatNumber(left)}
-            {ope === null ? "" : ope}
-            {ope !== null && right !== 0 && formatNumber(right)}
-          </>
-        )}
-      </div>
+      <div className="text-black">計算結果：{renderDisplay()}</div>
       <div className=" grid  grid-cols-4">
         {BUTTONS.map((item) => (
           <button
