@@ -26,26 +26,38 @@ const Home = () => {
     "+",
   ];
 
+  const calculate = () => {
+    switch (ope) {
+      case "+":
+        setResult(left + right);
+        console.log("加");
+        return;
+      case "-":
+        setResult(left - right);
+        console.log("減");
+        return;
+      case "×":
+        setResult(left * right);
+        console.log("乗");
+        return;
+      case "÷":
+        setResult(left / right);
+        console.log("除");
+        return;
+      default:
+        break;
+    }
+  };
   const keyPressed = (key) => {
-    if (OPERATORS.includes(key)) {
+    if (key === "=") {
+      calculate();
+      return result;
+    } else if (OPERATORS.includes(key)) {
       setOpe(key);
     } else if (ope === null) {
       setLeft((prev) => prev * 10 + Number(key));
     } else if (ope) {
       setRight((prev) => prev * 10 + Number(key));
-    } else {
-      //  修正予定箇所 {
-      //   switch (key === "=") {
-      //     case ope === "+":
-      //       setResult(left + right);
-      //       return;
-      //     case ope === "-":
-      //       setResult(left - right);
-      //       return;
-      //     default:
-      //       break;
-      //   }
-      // }
     }
   };
 
