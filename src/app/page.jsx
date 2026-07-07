@@ -31,7 +31,7 @@ const Home = () => {
 
   const clear = () => {
     setLeft(0);
-    setRight(null);
+    setRight(0);
     setOpe(null);
     setResult(null);
   };
