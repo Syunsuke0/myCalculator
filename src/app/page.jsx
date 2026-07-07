@@ -1,4 +1,5 @@
 "use client";
+import { BUTTONS, OPERATORS } from "@/constants/constants";
 import { useState } from "react";
 
 const Home = () => {
@@ -6,25 +7,6 @@ const Home = () => {
   const [ope, setOpe] = useState(null);
   const [right, setRight] = useState(0);
   const [result, setResult] = useState(null);
-  const OPERATORS = ["+", "-", "×", "÷"];
-  const BUTTONS = [
-    "7",
-    "8",
-    "9",
-    "÷",
-    "4",
-    "5",
-    "6",
-    "×",
-    "1",
-    "2",
-    "3",
-    "-",
-    "0",
-    "AC",
-    "=",
-    "+",
-  ];
   const formatNumber = (num) => {
     return num.toLocaleString();
   };
