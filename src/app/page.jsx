@@ -4,7 +4,7 @@ import { useState } from "react";
 const Home = () => {
   const [left, setLeft] = useState(0);
   const [ope, setOpe] = useState(null);
-  const [right, setRight] = useState(null);
+  const [right, setRight] = useState(0);
   const [result, setResult] = useState(null);
   const OPERATORS = ["+", "-", "×", "÷"];
   const BUTTONS = [
@@ -25,6 +25,9 @@ const Home = () => {
     "=",
     "+",
   ];
+  const formatNumber = (num) => {
+    return num.toLocaleString();
+  };
 
   const clear = () => {
     setLeft(0);
@@ -71,12 +74,12 @@ const Home = () => {
       <div className="text-black">
         計算結果：
         {result !== null ? (
-          result
+          formatNumber(result)
         ) : (
           <>
-            {left}
+            {formatNumber(left)}
             {ope === null ? "" : ope}
-            {ope === null ? "" : right}
+            {ope !== null && right !== 0 && formatNumber(right)}
           </>
         )}
       </div>
