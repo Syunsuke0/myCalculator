@@ -32,6 +32,14 @@ const Home = () => {
         return null;
     }
   };
+
+  const handleNumber = (key) => {
+    if (ope === null) {
+      setLeft((prev) => prev * 10 + Number(key));
+    } else {
+      setRight((prev) => prev * 10 + Number(key));
+    }
+  };
   const keyPressed = (key) => {
     if (key === "AC") {
       clear();
@@ -39,10 +47,8 @@ const Home = () => {
       setResult(calculate());
     } else if (OPERATORS.includes(key)) {
       setOpe(key);
-    } else if (ope === null) {
-      setLeft((prev) => prev * 10 + Number(key));
-    } else if (ope) {
-      setRight((prev) => prev * 10 + Number(key));
+    } else {
+      handleNumber(key);
     }
   };
   const renderDisplay = () =>
