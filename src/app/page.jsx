@@ -1,5 +1,6 @@
 "use client";
 import { BUTTONS, OPERATORS } from "@/constants/constants";
+import { calculate, formatNumber } from "@/lib/calculate";
 import { useState } from "react";
 
 const Home = () => {
@@ -44,7 +45,7 @@ const Home = () => {
     if (key === "AC") {
       clear();
     } else if (key === "=") {
-      setResult(calculate());
+      setResult(calculate(left, right, ope));
     } else if (OPERATORS.includes(key)) {
       setOpe(key);
     } else {
