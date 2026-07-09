@@ -1,4 +1,5 @@
 "use client";
+import { Display } from "@/components/Display";
 import { BUTTONS, OPERATORS } from "@/constants/constants";
 import { calculate, formatNumber } from "@/lib/calculate";
 import { useState } from "react";
@@ -8,30 +9,12 @@ const Home = () => {
   const [ope, setOpe] = useState(null);
   const [right, setRight] = useState(0);
   const [result, setResult] = useState(null);
-  const formatNumber = (num) => {
-    return num.toLocaleString();
-  };
 
   const clear = () => {
     setLeft(0);
     setRight(0);
     setOpe(null);
     setResult(null);
-  };
-
-  const calculate = () => {
-    switch (ope) {
-      case "+":
-        return left + right;
-      case "-":
-        return left - right;
-      case "×":
-        return left * right;
-      case "÷":
-        return left / right;
-      default:
-        return null;
-    }
   };
 
   const handleNumber = (key) => {
@@ -52,20 +35,10 @@ const Home = () => {
       handleNumber(key);
     }
   };
-  const renderDisplay = () =>
-    result !== null ? (
-      formatNumber(result)
-    ) : (
-      <>
-        {formatNumber(left)}
-        {ope === null ? "" : ope}
-        {ope !== null && right !== 0 && formatNumber(right)}
-      </>
-    );
 
   return (
     <div className="bg-white">
-      <div className="text-black">計算結果：{renderDisplay()}</div>
+      <Display left={left} right={right} ope={ope} result={result} />
       <div className=" grid  grid-cols-4">
         {BUTTONS.map((item) => (
           <button
