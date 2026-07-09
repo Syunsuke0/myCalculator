@@ -1,8 +1,6 @@
 "use client";
 import { Display } from "@/components/Display";
-import { BUTTONS, OPERATORS } from "@/constants/constants";
-import { calculate } from "@/lib/calculate";
-import { useState } from "react";
+import { Keypad } from "@/components/Keypad";
 
 const Home = () => {
   const [left, setLeft] = useState(0);
@@ -39,19 +37,7 @@ const Home = () => {
   return (
     <div className="bg-white">
       <Display left={left} right={right} ope={ope} result={result} />
-      <div className=" grid  grid-cols-4">
-        {BUTTONS.map((item) => (
-          <button
-            onClick={() => {
-              keyPressed(item);
-            }}
-            key={item}
-            className=" h-12 bg-white text-black outline-1 font-bold text-3xl"
-          >
-            {item}
-          </button>
-        ))}
-      </div>
+      <Keypad onKeyPressed={onKeyPressed} />
     </div>
   );
 };
