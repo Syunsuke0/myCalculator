@@ -1,7 +1,7 @@
 "use client";
 import { Display } from "@/components/Display";
 import { BUTTONS, OPERATORS } from "@/constants/constants";
-import { calculate, formatNumber } from "@/lib/calculate";
+import { calculate } from "@/lib/calculate";
 import { useState } from "react";
 
 const Home = () => {
