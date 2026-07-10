@@ -12,7 +12,15 @@ export const useCalculator = () => {
     setLeft(0);
     setRight(0);
     setOpe(null);
-    setResult(null);
+  };
+  const handleOperator = (key) => {
+    if (ope === null) {
+      setOpe(key);
+    } else {
+      setLeft(calculate(left, right, ope));
+      setOpe(key);
+      setRight(0);
+    }
   };
   const handleNumber = (key) => {
     if (ope === null) {
@@ -25,9 +33,10 @@ export const useCalculator = () => {
     if (key === "AC") {
       clear();
     } else if (key === "=") {
-      setResult(calculate(left, right, ope));
+      clear();
+      setLeft(calculate(left, right, ope));
     } else if (OPERATORS.includes(key)) {
-      setOpe(key);
+      handleOperator(key);
     } else {
       handleNumber(key);
     }
