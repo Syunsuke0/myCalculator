@@ -7,6 +7,24 @@ export const useCalculator = () => {
   const [ope, setOpe] = useState(null);
   const [right, setRight] = useState(0);
 
+  const [expression, setExpression] = useState([]);
+
+  const handleNumber2 = (key) => {
+    setExpression((prev) => {
+      // 配列の最後を確認
+      const last = prev[prev.length - 1];
+
+      // ope or 空配列
+      if (OPERATORS.includes(last) || prev.length === 0) {
+        console.log(`初!${[...prev, Number(key)]}`);
+        return [...prev, Number(key)];
+      } else {
+        console.log([...prev.slice(0, -1), last * 10 + Number(key)]);
+        return [...prev.slice(0, -1), last * 10 + Number(key)];
+      }
+    });
+  };
+
   const clear = () => {
     setLeft(0);
     setRight(0);
@@ -37,7 +55,8 @@ export const useCalculator = () => {
     } else if (OPERATORS.includes(key)) {
       handleOperator(key);
     } else {
-      handleNumber(key);
+      // handleNumber(key);
+      handleNumber2(key);
     }
   };
 
