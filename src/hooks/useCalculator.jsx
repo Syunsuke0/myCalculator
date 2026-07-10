@@ -6,7 +6,6 @@ export const useCalculator = () => {
   const [left, setLeft] = useState(0);
   const [ope, setOpe] = useState(null);
   const [right, setRight] = useState(0);
-  const [result, setResult] = useState(null);
 
   const clear = () => {
     setLeft(0);
@@ -46,7 +45,6 @@ export const useCalculator = () => {
     left,
     right,
     ope,
-    result,
     onKeyPressed,
   };
 };
